@@ -97,7 +97,7 @@ JoystickData UartNode::parseJoystickRaw(const uint8_t* frame)
     joy_.stateMachineUpdate(adc_x, adc_y);
 
     const JoySpeed& sp = joy_.getSpeed();
-    // 直接原始浮点，不乘以1000缩放
+    //直接原始浮点，不乘以1000缩放
     if((abs_f(sp.line_speed) < 0.001f) && (abs_f(sp.angle_speed) < 0.001f) \
        && abs_f(js.speed_x) < 0.001f && abs_f(js.speed_y) < 0.001f)
     {
@@ -106,8 +106,8 @@ JoystickData UartNode::parseJoystickRaw(const uint8_t* frame)
     }
     else
     {
-        js.speed_x = curve_line_.calc(js.speed_x);
-        js.speed_y = curve_angle_.calc(js.speed_y);
+        js.speed_x = curve_line_.calc(sp.line_speed);
+        js.speed_y = curve_angle_.calc(sp.angle_speed);
     }
     return js;
 }

@@ -90,7 +90,6 @@ KeyState UartNode::parseKeyToState(uint16_t key_mask)
 
 JoystickData UartNode::parseJoystickRaw(const uint8_t* frame)
 {
-    JoystickData js;
     uint16_t adc_x = static_cast<uint16_t>(frame[5] | (frame[6] << 8));
     uint16_t adc_y = static_cast<uint16_t>(frame[7] | (frame[8] << 8));
 
@@ -99,17 +98,19 @@ JoystickData UartNode::parseJoystickRaw(const uint8_t* frame)
     const JoySpeed& sp = joy_.getSpeed();
     //直接原始浮点，不乘以1000缩放
     if((abs_f(sp.line_speed) < 0.001f) && (abs_f(sp.angle_speed) < 0.001f) \
-       && abs_f(js.speed_x) < 0.001f && abs_f(js.speed_y) < 0.001f)
+       && abs_f(joystick_data_.speed_x) < 0.001f && abs_f(joystick_data_.speed_y) < 0.001f)
     {
         curve_line_.lineInit();
         curve_angle_.angleInit();
+        joystick_data_.speed_x = 0.0f;
+        joystick_data_.speed_y = 0.0f;
     }
     else
     {
-        js.speed_x = curve_line_.calc(sp.line_speed);
-        js.speed_y = curve_angle_.calc(sp.angle_speed);
+        joystick_data_.speed_x = curve_line_.calc(sp.line_speed);
+        joystick_data_.speed_y = curve_angle_.calc(sp.angle_speed);
     }
-    return js;
+    return joystick_data_;
 }
 
 void UartNode::publishKeyState(const KeyState& ks)

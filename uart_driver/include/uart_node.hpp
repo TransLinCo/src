@@ -64,6 +64,7 @@ private:
     Joystick joy_;
     SCurveFilter curve_line_;
     SCurveFilter curve_angle_;
+    JoystickData joystick_data_;
 
 
     uint16_t crc16_update(uint16_t crc, uint8_t data);

@@ -4,8 +4,8 @@ Joystick::Joystick()
 {
     state_ = JoyState::INIT;
     // 初始化线、角速度各自S曲线参数
-    curve_line_.lineInit();
-    curve_angle_.angleInit();
+    // curve_line_.lineInit();
+    // curve_angle_.angleInit();
 }
 
 int16_t Joystick::abs16(int16_t x)
@@ -95,8 +95,8 @@ void Joystick::mapJoyToMotion()
     float w_cmd = -joy_x * param.wmax;
 
     // 严格在此处调用S曲线计算，逻辑完全沿用你原始算法
-    speed_.line_speed = curve_line_.calc(v_cmd);
-    speed_.angle_speed = curve_angle_.calc(w_cmd);
+    speed_.line_speed = v_cmd;
+    speed_.angle_speed = w_cmd;
 }
 
 void Joystick::sCurveCalc()

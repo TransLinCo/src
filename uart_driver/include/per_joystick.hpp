@@ -114,8 +114,8 @@ private:
     GearCtrl gear_ctrl_;
 
     // S曲线实例
-    SCurveFilter curve_line_;
-    SCurveFilter curve_angle_;
+    // SCurveFilter curve_line_;
+    // SCurveFilter curve_angle_;
 
     // 内部工具函数
     int16_t abs16(int16_t x);

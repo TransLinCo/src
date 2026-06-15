@@ -62,6 +62,9 @@ private:
     std::vector<uint8_t> rx_buffer_;
 
     Joystick joy_;
+    SCurveFilter curve_line_;
+    SCurveFilter curve_angle_;
+
 
     uint16_t crc16_update(uint16_t crc, uint8_t data);
     uint16_t crc16_calc(const uint8_t *data, uint16_t len);

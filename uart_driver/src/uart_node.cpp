@@ -35,7 +35,7 @@ UartNode::UartNode() : Node("uart_node")
 
     pub_ = this->create_publisher<std_msgs::msg::String>("uart_rx", 10);
     key_pub_ = this->create_publisher<std_msgs::msg::UInt8MultiArray>("key_state", 10);
-    joy_pub_ = this->create_publisher<geometry_msgs::msg::Twist>("cmd_vel", 10);
+    joy_pub_ = this->create_publisher<geometry_msgs::msg::Twist>("cmd_vel_joystick", 10);
 
     joy_.gearInit();
 

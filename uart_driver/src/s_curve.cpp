@@ -20,8 +20,8 @@ void SCurveFilter::lineInit()
 {
     output_ = 0.0f;
     accel_ = 0.0f;
-    accel_up_ = 2.5f;
-    accel_down_ = -4.0f;
+    accel_up_ = 2.0f;
+    accel_down_ = -3.0f;
     jerk_up_ = 16.0f;
     jerk_down_ = 40.0f;
     dt_ = 0.005f;
@@ -33,8 +33,8 @@ void SCurveFilter::angleInit()
 {
     output_ = 0.0f;
     accel_ = 0.0f;
-    accel_up_ = 2.5f;
-    accel_down_ = -4.0f;
+    accel_up_ = 2.0f;
+    accel_down_ = -3.0f;
     jerk_up_ = 24.0f;
     jerk_down_ = 40.0f;
     dt_ = 0.005f;

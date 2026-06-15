@@ -40,7 +40,7 @@ float Joystick::adcToNorm(int16_t delta)
 
 void Joystick::gearInit()
 {
-    uint8_t init_gear = SPEED_GEAR_1;
+    uint8_t init_gear = SPEED_GEAR_2;
     gear_ctrl_.gear = init_gear;
     gear_ctrl_.gear_up_evt = 0;
     gear_ctrl_.gear_dn_evt = 0;

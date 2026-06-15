@@ -96,20 +96,22 @@ JoystickData UartNode::parseJoystickRaw(const uint8_t* frame)
     joy_.stateMachineUpdate(adc_x, adc_y);
 
     const JoySpeed& sp = joy_.getSpeed();
-    //直接原始浮点，不乘以1000缩放
-    if((abs_f(sp.line_speed) < 0.001f) && (abs_f(sp.angle_speed) < 0.001f) \
-       && abs_f(joystick_data_.speed_x) < 0.001f && abs_f(joystick_data_.speed_y) < 0.001f)
-    {
-        curve_line_.lineInit();
-        curve_angle_.angleInit();
-        joystick_data_.speed_x = 0.0f;
-        joystick_data_.speed_y = 0.0f;
-    }
-    else
-    {
-        joystick_data_.speed_x = curve_line_.calc(sp.line_speed);
-        joystick_data_.speed_y = curve_angle_.calc(sp.angle_speed);
-    }
+    // //直接原始浮点，不乘以1000缩放
+    // if((abs_f(sp.line_speed) < 0.001f) && (abs_f(sp.angle_speed) < 0.001f) \
+    //    && abs_f(joystick_data_.speed_x) < 0.001f && abs_f(joystick_data_.speed_y) < 0.001f)
+    // {
+    //     curve_line_.lineInit();
+    //     curve_angle_.angleInit();
+    //     joystick_data_.speed_x = 0.0f;
+    //     joystick_data_.speed_y = 0.0f;
+    // }
+    // else
+    // {
+    //     joystick_data_.speed_x = curve_line_.calc(sp.line_speed);
+    //     joystick_data_.speed_y = curve_angle_.calc(sp.angle_speed);
+    // }
+        joystick_data_.speed_x = sp.line_speed;
+        joystick_data_.speed_y = sp.angle_speed;
     return joystick_data_;
 }
 
